@@ -10,9 +10,13 @@ body {
 }
 
 h3 {
-    font-size: 30px;
+    font-size: 25px;
     margin-top: 0px;
     margin-bottom: 5px;
+}
+
+p {
+    font-size: 11px;
 }
 
 .wrapper {
@@ -23,22 +27,63 @@ h3 {
     transform: translate(-50%, -50%);
     width: 400px;
     height: 300px;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+    transition: .4s;
 }
 
+.wrapper::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-top: 20px solid #FCFCD4;
+    border-left: 20px solid #FCFCD4;
+    box-sizing: border-box;
+}
 
-.info {
+.wrapper::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border-bottom: 20px solid #FCFCD4;
+    border-right: 20px solid #FCFCD4;
+    box-sizing: border-box;
+}
+
+.wrapper .text {
+    background-color: var(--card);
+    position: absolute;
+    top: 30px;
+    left: -30px;
+    width: calc(100% + 60px);
+    height: calc(100% -60px);
+    transition: .4s;
+}
+
+.wrapper .text > div {
     width: 100%;
     padding: 21px 60px;
     line-height: 1.5;
     box-sizing: border-box;
 }
 
-.text {
-    background-color: var(--card);
-    font-size: 15px;
-}
-
 .quote {
     font-family: 'Salsa', sans-serif;
     font-size: 20px;
+}
+
+.wrapper:hover {
+    transform: translate(-50%, -50%) rotateY(-20deg) skewY(3deg);
+}
+
+.wrapper:hover .text{
+    transform: rotateY(20deg) skewY(-3deg);
 }
